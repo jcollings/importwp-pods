@@ -5,7 +5,7 @@
  * Plugin URI: https://www.importwp.com
  * Description: Allow ImportWP to import Pods.
  * Author: James Collings <james@jclabs.co.uk>
- * Version: 2.0.0
+ * Version: _2.0.2_
  * Author URI: https://www.importwp.com
  * Network: True
  */

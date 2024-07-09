@@ -40,6 +40,16 @@ function iwp_pods_setup()
     $base_path = dirname(__FILE__);
 
     require_once $base_path . '/setup.php';
+
+    // Install updater
+    if (file_exists($base_path . '/updater.php') && !class_exists('IWP_Updater')) {
+        require_once $base_path . '/updater.php';
+    }
+
+    if (class_exists('IWP_Updater')) {
+        $updater = new IWP_Updater(__FILE__, 'importwp-pods');
+        $updater->initialize();
+    }
 }
 add_action('plugins_loaded', 'iwp_pods_setup', 9);
 

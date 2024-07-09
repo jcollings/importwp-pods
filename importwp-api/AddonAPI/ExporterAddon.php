@@ -2,13 +2,8 @@
 
 namespace ImportWP\Common\AddonAPI;
 
-class ExporterAddon
+class ExporterAddon extends Addon
 {
-    /**
-     * @var \ImportWP\EventHandler
-     */
-    private $event_handler;
-
     /**
      * @var ExporterData
      */
@@ -16,8 +11,7 @@ class ExporterAddon
 
     public function __construct()
     {
-        // Register addon
-        \ImportWP\Common\AddonAPI\AddonManager::instance()->register($this);
+        parent::__construct();
 
         $allowed_types = $this->export_types();
         foreach ($allowed_types as $allowed_type) {

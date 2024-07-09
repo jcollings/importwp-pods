@@ -4,7 +4,7 @@ namespace ImportWP\Common\AddonAPI;
 
 use ImportWP\Common\AddonAPI\Template\Template;
 
-class ImporterAddon
+class ImporterAddon extends Addon
 {
     /**
      * @var  \ImportWP\Common\Importer\Template\Template
@@ -33,8 +33,7 @@ class ImporterAddon
 
     public function __construct()
     {
-        // Register addon
-        \ImportWP\Common\AddonAPI\AddonManager::instance()->register($this);
+        parent::__construct();
 
         // capture for template registration
         add_action('iwp/register_events', function ($event_handler) {

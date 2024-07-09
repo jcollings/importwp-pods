@@ -5,7 +5,7 @@
  * Plugin URI: https://www.importwp.com
  * Description: Allow ImportWP to import Pods.
  * Author: James Collings <james@jclabs.co.uk>
- * Version: _2.0.2_
+ * Version: 2.1.0
  * Author URI: https://www.importwp.com
  * Network: True
  */
@@ -39,7 +39,6 @@ function iwp_pods_setup()
 
     $base_path = dirname(__FILE__);
 
-    require_once $base_path . '/class/autoload.php';
     require_once $base_path . '/setup.php';
 }
 add_action('plugins_loaded', 'iwp_pods_setup', 9);

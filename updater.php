@@ -63,7 +63,7 @@ class IWP_Updater
         if (is_object($transient) && property_exists($transient, 'checked') && $checked = $transient->checked) { // Did Wordpress check for updates?
             $this->get_repository_info(); // Get the repo info
 
-            if (!is_array($this->plugin_api_response) || !isset($this->plugin_api_response['tag_name']) || empty($this->basename)) {
+            if (!is_array($this->plugin_api_response) || !isset($this->plugin_api_response['tag_name']) || empty($this->basename) || !isset($checked[$this->basename])) {
                 return $transient;
             }
 
@@ -75,9 +75,10 @@ class IWP_Updater
 
                 $plugin = array( // setup our plugin info
                     'url' => $this->plugin["PluginURI"],
-                    'slug' => $this->basename,
+                    'slug' => dirname($this->basename),
                     'package' => $new_files,
-                    'new_version' => $this->plugin_api_response['tag_name']
+                    'new_version' => $this->plugin_api_response['tag_name'],
+                    'plugin' => $this->basename
                 );
 
                 $transient->response[$this->basename] = (object) $plugin; // Return it in response

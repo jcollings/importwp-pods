@@ -14,7 +14,7 @@ add_action('admin_init', 'iwp_pods_check');
 
 function iwp_pods_requirements_met()
 {
-    return false === (is_admin() && current_user_can('activate_plugins') &&  (!function_exists('pods_is_plugin_active') || version_compare(IWP_VERSION, '2.0.23', '<')));
+    return false === (is_admin() && current_user_can('activate_plugins') &&  (!function_exists('pods_is_plugin_active') || version_compare(IWP_VERSION, '2.14.0', '<')));
 }
 
 function iwp_pods_check()
@@ -56,6 +56,6 @@ add_action('plugins_loaded', 'iwp_pods_setup', 9);
 function iwp_pods_notice()
 {
     echo '<div class="error">';
-    echo '<p><strong>ImportWP - Pods Importer Addon</strong> requires that you have <strong>ImportWP PRO v2.0.23 or newer</strong>, and <strong>Pods</strong> installed.</p>';
+    echo '<p><strong>ImportWP - Pods Importer Addon</strong> requires that you have <strong>ImportWP v2.14.0 or newer</strong>, <strong>ImportWP Pro</strong>, and <strong>Pods</strong> installed.</p>';
     echo '</div>';
 }

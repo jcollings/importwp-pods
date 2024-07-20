@@ -50,13 +50,16 @@ class PodsExporterAddon extends \ImportWP\Common\AddonAPI\ExporterAddon
 
                     switch ($pick_object) {
                         case 'post_type':
+                        case 'taxonomy':
                             $exporter_group->add_field($field_data['meta'] . '::id');
                             $exporter_group->add_field($field_data['meta'] . '::name');
                             $exporter_group->add_field($field_data['meta'] . '::slug');
                             break;
-                        case 'taxonomy':
                             break;
                         case 'user':
+                            $exporter_group->add_field($field_data['meta'] . '::id');
+                            $exporter_group->add_field($field_data['meta'] . '::username');
+                            $exporter_group->add_field($field_data['meta'] . '::email');
                             break;
                     }
                 } else {
@@ -144,8 +147,65 @@ class PodsExporterAddon extends \ImportWP\Common\AddonAPI\ExporterAddon
                                     }
                                     break;
                                 case 'taxonomy':
+                                    if ($field_data['repeatable']) {
+                                        $id = array_reduce($value, function ($carry, $item) {
+
+                                            $carry[] = $item['term_id'];
+                                            return $carry;
+                                        }, []);
+                                        $field->set_value($id);
+                                        $field->set_value($id, 'id');
+
+                                        $name = array_reduce($value, function ($carry, $item) {
+
+                                            $carry[] = $item['name'];
+                                            return $carry;
+                                        }, []);
+                                        $field->set_value($name, 'name');
+
+                                        $slug = array_reduce($value, function ($carry, $item) {
+
+                                            $carry[] = $item['slug'];
+                                            return $carry;
+                                        }, []);
+                                        $field->set_value($slug, 'slug');
+                                    } else {
+                                        $field->set_value($value['term_id']);
+                                        $field->set_value($value['term_id'], 'id');
+                                        $field->set_value($value['name'], 'name');
+                                        $field->set_value($value['slug'], 'slug');
+                                    }
                                     break;
                                 case 'user':
+                                    // ID, user_email, user_login
+                                    if ($field_data['repeatable']) {
+                                        $id = array_reduce($value, function ($carry, $item) {
+
+                                            $carry[] = $item['ID'];
+                                            return $carry;
+                                        }, []);
+                                        $field->set_value($id);
+                                        $field->set_value($id, 'id');
+
+                                        $name = array_reduce($value, function ($carry, $item) {
+
+                                            $carry[] = $item['user_login'];
+                                            return $carry;
+                                        }, []);
+                                        $field->set_value($name, 'username');
+
+                                        $slug = array_reduce($value, function ($carry, $item) {
+
+                                            $carry[] = $item['user_email'];
+                                            return $carry;
+                                        }, []);
+                                        $field->set_value($slug, 'email');
+                                    } else {
+                                        $field->set_value($value['ID']);
+                                        $field->set_value($value['ID'], 'id');
+                                        $field->set_value($value['user_login'], 'username');
+                                        $field->set_value($value['user_email'], 'email');
+                                    }
                                     break;
                             }
                         } else {

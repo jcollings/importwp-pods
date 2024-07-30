@@ -18,8 +18,8 @@ cd "$SCRIPTPATH/.."
 
 # Build plugin
 if [ -f "package.json" ]; then
-    npm i --include=dev
-    npm run build
+    pnpm i
+    pnpm build
 fi
 
 FOLDER=build

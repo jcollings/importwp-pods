@@ -5,7 +5,7 @@
  * Plugin URI: https://www.importwp.com
  * Description: Allow ImportWP to import Pods.
  * Author: James Collings <james@jclabs.co.uk>
- * Version: 2.1.0
+ * Version: __STABLE_TAG__
  * Author URI: https://www.importwp.com
  * Network: True
  */
@@ -56,6 +56,6 @@ add_action('plugins_loaded', 'iwp_pods_setup', 9);
 function iwp_pods_notice()
 {
     echo '<div class="error">';
-    echo '<p><strong>ImportWP - Pods Importer Addon</strong> requires that you have <strong>ImportWP v2.14.0 or newer</strong>, <strong>ImportWP Pro</strong>, and <strong>Pods</strong> installed.</p>';
+    echo '<p><strong>ImportWP - Pods Importer Addon</strong> requires that you have <strong>ImportWP v2.14.1 or newer</strong>, <strong>ImportWP Pro</strong>, and <strong>Pods</strong> installed.</p>';
     echo '</div>';
 }

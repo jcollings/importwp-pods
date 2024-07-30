@@ -1,5 +1,7 @@
 # ImportWP Pods Importer
 
+Version: __STABLE_TAG__  
+
 ![Pods Importer Importer](./assets/iwp-addon-pods.png)
 
 ## Description

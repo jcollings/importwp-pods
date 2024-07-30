@@ -14,7 +14,7 @@ add_action('admin_init', 'iwp_pods_check');
 
 function iwp_pods_requirements_met()
 {
-    return false === (is_admin() && current_user_can('activate_plugins') &&  (!function_exists('pods_is_plugin_active') || version_compare(IWP_VERSION, '2.14.0', '<')));
+    return false === (is_admin() && current_user_can('activate_plugins') &&  (!function_exists('pods_is_plugin_active') || version_compare(IWP_VERSION, '2.14.1', '<')));
 }
 
 function iwp_pods_check()
